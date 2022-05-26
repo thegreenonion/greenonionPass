@@ -93,7 +93,6 @@ namespace Password_Manager
 
         public int[] encrypt(string plain)     //noch nicht fertig
         {
-            lblCrypt.Text = "";
             int x = 0;
             foreach (char c in plain)
             {
