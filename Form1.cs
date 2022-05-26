@@ -88,6 +88,11 @@ namespace Password_Manager
 
         public string encrypt(string plain)     //noch nicht fertig
         {
+            int x = 0;
+            foreach (char c in plain)
+            {
+                x++;
+            }
             int i = 0;
             foreach(char c in plain)
             {
