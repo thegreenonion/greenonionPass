@@ -32,11 +32,12 @@
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.lblA = new System.Windows.Forms.Label();
             this.lblRandom = new System.Windows.Forms.Label();
+            this.lblCrypt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbLogin
             // 
-            this.cmbLogin.Location = new System.Drawing.Point(575, 380);
+            this.cmbLogin.Location = new System.Drawing.Point(567, 368);
             this.cmbLogin.Name = "cmbLogin";
             this.cmbLogin.Size = new System.Drawing.Size(217, 63);
             this.cmbLogin.TabIndex = 0;
@@ -67,11 +68,20 @@
             this.lblRandom.Size = new System.Drawing.Size(0, 16);
             this.lblRandom.TabIndex = 3;
             // 
+            // lblCrypt
+            // 
+            this.lblCrypt.AutoSize = true;
+            this.lblCrypt.Location = new System.Drawing.Point(1038, 294);
+            this.lblCrypt.Name = "lblCrypt";
+            this.lblCrypt.Size = new System.Drawing.Size(0, 16);
+            this.lblCrypt.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 577);
+            this.ClientSize = new System.Drawing.Size(1237, 530);
+            this.Controls.Add(this.lblCrypt);
             this.Controls.Add(this.lblRandom);
             this.Controls.Add(this.lblA);
             this.Controls.Add(this.txtLogin);
@@ -89,6 +99,7 @@
         private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.Label lblA;
         private System.Windows.Forms.Label lblRandom;
+        private System.Windows.Forms.Label lblCrypt;
     }
 }
 

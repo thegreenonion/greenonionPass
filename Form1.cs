@@ -12,6 +12,7 @@ namespace Password_Manager
 {
     public partial class Form1 : Form
     {
+        public int localcrypt;
         public string ASCIIcrypt;
         public int random;
         public int[] secret = { 1, 2, 3, 4, 5, 6 };
@@ -33,6 +34,7 @@ namespace Password_Manager
 
             //lblRandom.Text = System.Convert.ToString(GetRandomNumber(SetRandomObject(ConvertToASCIIint(passwd))));
             GetRandomNumber(SetRandomObject(ConvertToASCIIstring(passwd)));
+            encrypt("MyPassword");
         }
 
         public int ConvertToASCIIint(string s)
@@ -80,12 +82,17 @@ namespace Password_Manager
 
         }
 
-        public int encrypt(string plain)
+        public string encrypt(string plain)     //noch nicht fertig
         {
             foreach(char c in plain)
             {
-                ASCIIcrypt +=
+                //int k = 0;
+                localcrypt = Convert.ToInt32(c);
+
+                //localcrypt = localcrypt + 
             }
+
+            return ASCIIcrypt;
         }
     }
 }
