@@ -84,6 +84,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(200, 22);
             this.txtPass.TabIndex = 5;
+            this.txtPass.Visible = false;
             // 
             // cmbEncrypt
             // 
@@ -93,6 +94,7 @@
             this.cmbEncrypt.TabIndex = 6;
             this.cmbEncrypt.Text = "Encrypt";
             this.cmbEncrypt.UseVisualStyleBackColor = true;
+            this.cmbEncrypt.Visible = false;
             this.cmbEncrypt.Click += new System.EventHandler(this.cmbEncrypt_Click);
             // 
             // Form1

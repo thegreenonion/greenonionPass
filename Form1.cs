@@ -30,8 +30,14 @@ namespace Password_Manager
 
         private void cmbLogin_Click(object sender, EventArgs e)
         {
-            passwd = txtLogin.Text;
-            lblA.Text = ConvertToASCIIstring(passwd) + "";
+            if(txtLogin.Text != "")
+            {
+                passwd = txtLogin.Text;
+                lblA.Text = ConvertToASCIIstring(passwd) + "";
+                txtPass.Visible = true;
+                cmbEncrypt.Visible = true;
+            }
+
 
 
             //lblRandom.Text = System.Convert.ToString(GetRandomNumber(SetRandomObject(ConvertToASCIIint(passwd))));
