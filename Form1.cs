@@ -36,7 +36,6 @@ namespace Password_Manager
 
             //lblRandom.Text = System.Convert.ToString(GetRandomNumber(SetRandomObject(ConvertToASCIIint(passwd))));
             //GetRandomNumber(SetRandomObject(ConvertToASCIIstring(passwd)));
-            encrypt("MyPassword");
         }
 
         public int ConvertToASCIIint(string s)
@@ -86,7 +85,7 @@ namespace Password_Manager
 
         }
 
-        public string encrypt(string plain)     //noch nicht fertig
+        public int[] encrypt(string plain)     //noch nicht fertig
         {
             lblCrypt.Text = "";
             int x = 0;
@@ -101,13 +100,21 @@ namespace Password_Manager
                 //int k = 0;
                 localcrypt = Convert.ToInt32(c);
                 localcrypt += GetRandomNumber(SetRandomObject(passint), i);
-                lblCrypt.Text += localcrypt + "\n";
+                //lblCrypt.Text += localcrypt + "\n";
                 encrypted[i] = localcrypt;
                 //localcrypt = localcrypt 
                 i++;
             }
 
-            return Convert.ToString(encrypted);
+            return encrypted;
+        }
+
+        private void cmbEncrypt_Click(object sender, EventArgs e)
+        {
+            foreach(int i in encrypt(txtPass.Text))
+            {
+                lblCrypt.Text += i + "\n";
+            }
         }
     }
 }

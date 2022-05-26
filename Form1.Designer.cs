@@ -89,10 +89,11 @@
             // 
             this.cmbEncrypt.Location = new System.Drawing.Point(183, 74);
             this.cmbEncrypt.Name = "cmbEncrypt";
-            this.cmbEncrypt.Size = new System.Drawing.Size(128, 23);
+            this.cmbEncrypt.Size = new System.Drawing.Size(128, 30);
             this.cmbEncrypt.TabIndex = 6;
             this.cmbEncrypt.Text = "Encrypt";
             this.cmbEncrypt.UseVisualStyleBackColor = true;
+            this.cmbEncrypt.Click += new System.EventHandler(this.cmbEncrypt_Click);
             // 
             // Form1
             // 
