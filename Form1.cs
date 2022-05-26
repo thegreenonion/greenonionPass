@@ -88,21 +88,23 @@ namespace Password_Manager
 
         public string encrypt(string plain)     //noch nicht fertig
         {
+            lblCrypt.Text = "";
             int x = 0;
             foreach (char c in plain)
             {
                 x++;
             }
             int i = 0;
+            encrypted = new int[x];
             foreach(char c in plain)
             {
-                i++;
                 //int k = 0;
                 localcrypt = Convert.ToInt32(c);
                 localcrypt += GetRandomNumber(SetRandomObject(passint), i);
                 lblCrypt.Text += localcrypt + "\n";
                 encrypted[i] = localcrypt;
                 //localcrypt = localcrypt 
+                i++;
             }
 
             return Convert.ToString(encrypted);

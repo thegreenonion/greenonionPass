@@ -33,6 +33,8 @@
             this.lblA = new System.Windows.Forms.Label();
             this.lblRandom = new System.Windows.Forms.Label();
             this.lblCrypt = new System.Windows.Forms.Label();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.cmbEncrypt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmbLogin
@@ -63,7 +65,7 @@
             // lblRandom
             // 
             this.lblRandom.AutoSize = true;
-            this.lblRandom.Location = new System.Drawing.Point(907, 332);
+            this.lblRandom.Location = new System.Drawing.Point(907, 136);
             this.lblRandom.Name = "lblRandom";
             this.lblRandom.Size = new System.Drawing.Size(0, 16);
             this.lblRandom.TabIndex = 3;
@@ -71,16 +73,34 @@
             // lblCrypt
             // 
             this.lblCrypt.AutoSize = true;
-            this.lblCrypt.Location = new System.Drawing.Point(1038, 294);
+            this.lblCrypt.Location = new System.Drawing.Point(1143, 74);
             this.lblCrypt.Name = "lblCrypt";
             this.lblCrypt.Size = new System.Drawing.Size(0, 16);
             this.lblCrypt.TabIndex = 4;
+            // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(147, 37);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(200, 22);
+            this.txtPass.TabIndex = 5;
+            // 
+            // cmbEncrypt
+            // 
+            this.cmbEncrypt.Location = new System.Drawing.Point(183, 74);
+            this.cmbEncrypt.Name = "cmbEncrypt";
+            this.cmbEncrypt.Size = new System.Drawing.Size(128, 23);
+            this.cmbEncrypt.TabIndex = 6;
+            this.cmbEncrypt.Text = "Encrypt";
+            this.cmbEncrypt.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1237, 530);
+            this.Controls.Add(this.cmbEncrypt);
+            this.Controls.Add(this.txtPass);
             this.Controls.Add(this.lblCrypt);
             this.Controls.Add(this.lblRandom);
             this.Controls.Add(this.lblA);
@@ -100,6 +120,8 @@
         private System.Windows.Forms.Label lblA;
         private System.Windows.Forms.Label lblRandom;
         private System.Windows.Forms.Label lblCrypt;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Button cmbEncrypt;
     }
 }
 
