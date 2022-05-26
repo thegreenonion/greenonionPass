@@ -21,6 +21,7 @@ namespace Password_Manager
         public string passwd;
         public string passwdASCII;
         public int localrand;
+        public int[] encrypted;
 
         public Form1()
         {
@@ -76,7 +77,7 @@ namespace Password_Manager
         public int GetRandomNumber(Random randobj, int number)
         {
             lblRandom.Text = "";
-            for(int j = 0; j < number; j++)
+            for(int j = 1; j < number; j++)
             {
                 //lblRandom.Text += randobj.Next() + "\n";
                 localrand = randobj.Next();
@@ -87,18 +88,19 @@ namespace Password_Manager
 
         public string encrypt(string plain)     //noch nicht fertig
         {
+            int i = 0;
             foreach(char c in plain)
             {
-                int i = 0;
                 i++;
                 //int k = 0;
                 localcrypt = Convert.ToInt32(c);
-                localcrypt = localcrypt + GetRandomNumber(SetRandomObject(passint), i);
+                localcrypt += GetRandomNumber(SetRandomObject(passint), i);
                 lblCrypt.Text += localcrypt + "\n";
+                encrypted[i] = localcrypt;
                 //localcrypt = localcrypt 
             }
 
-            return ASCIIcrypt;
+            return Convert.ToString(encrypted);
         }
     }
 }
