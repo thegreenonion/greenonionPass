@@ -20,6 +20,7 @@ namespace Password_Manager
         public string pass;
         public string passwd;
         public string passwdASCII;
+        public int localrand;
 
         public Form1()
         {
@@ -33,7 +34,7 @@ namespace Password_Manager
 
 
             //lblRandom.Text = System.Convert.ToString(GetRandomNumber(SetRandomObject(ConvertToASCIIint(passwd))));
-            GetRandomNumber(SetRandomObject(ConvertToASCIIstring(passwd)));
+            //GetRandomNumber(SetRandomObject(ConvertToASCIIstring(passwd)));
             encrypt("MyPassword");
         }
 
@@ -72,13 +73,15 @@ namespace Password_Manager
             return randomobject;
         }
 
-        public void GetRandomNumber(Random randobj)
+        public int GetRandomNumber(Random randobj, int number)
         {
             lblRandom.Text = "";
-            for(int j = 0; j < secret.Length; j++)
+            for(int j = 0; j < number; j++)
             {
-                lblRandom.Text += randobj.Next() + "\n";
+                //lblRandom.Text += randobj.Next() + "\n";
+                localrand = randobj.Next();
             }
+            return localrand;
 
         }
 
@@ -86,10 +89,13 @@ namespace Password_Manager
         {
             foreach(char c in plain)
             {
+                int i = 0;
+                i++;
                 //int k = 0;
                 localcrypt = Convert.ToInt32(c);
-
-                //localcrypt = localcrypt + 
+                localcrypt = localcrypt + GetRandomNumber(SetRandomObject(passint), i);
+                lblCrypt.Text += localcrypt + "\n";
+                //localcrypt = localcrypt 
             }
 
             return ASCIIcrypt;
