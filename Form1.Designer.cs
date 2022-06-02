@@ -35,6 +35,8 @@
             this.lblCrypt = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.cmbEncrypt = new System.Windows.Forms.Button();
+            this.cmbClear = new System.Windows.Forms.Button();
+            this.cmbClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmbLogin
@@ -97,11 +99,34 @@
             this.cmbEncrypt.Visible = false;
             this.cmbEncrypt.Click += new System.EventHandler(this.cmbEncrypt_Click);
             // 
+            // cmbClear
+            // 
+            this.cmbClear.Location = new System.Drawing.Point(1112, 13);
+            this.cmbClear.Name = "cmbClear";
+            this.cmbClear.Size = new System.Drawing.Size(113, 28);
+            this.cmbClear.TabIndex = 7;
+            this.cmbClear.Text = "Clear";
+            this.cmbClear.UseVisualStyleBackColor = true;
+            this.cmbClear.Click += new System.EventHandler(this.cmbClear_Click);
+            // 
+            // cmbClose
+            // 
+            this.cmbClose.BackColor = System.Drawing.Color.Red;
+            this.cmbClose.Location = new System.Drawing.Point(1096, 481);
+            this.cmbClose.Name = "cmbClose";
+            this.cmbClose.Size = new System.Drawing.Size(129, 37);
+            this.cmbClose.TabIndex = 8;
+            this.cmbClose.Text = "Close";
+            this.cmbClose.UseVisualStyleBackColor = false;
+            this.cmbClose.Click += new System.EventHandler(this.cmbClose_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1237, 530);
+            this.Controls.Add(this.cmbClose);
+            this.Controls.Add(this.cmbClear);
             this.Controls.Add(this.cmbEncrypt);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.lblCrypt);
@@ -125,6 +150,8 @@
         private System.Windows.Forms.Label lblCrypt;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Button cmbEncrypt;
+        private System.Windows.Forms.Button cmbClear;
+        private System.Windows.Forms.Button cmbClose;
     }
 }
 

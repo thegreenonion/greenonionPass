@@ -107,7 +107,7 @@ namespace Password_Manager
                 localcrypt += GetRandomNumber(SetRandomObject(passint), i);
                 //lblCrypt.Text += localcrypt + "\n";
                 encrypted[i] = localcrypt;
-                //localcrypt = localcrypt 
+                //localcrypt = localcrypt
                 i++;
             }
 
@@ -120,6 +120,16 @@ namespace Password_Manager
             {
                 lblCrypt.Text += i + "\n";
             }
+        }
+
+        private void cmbClear_Click(object sender, EventArgs e)
+        {
+            lblCrypt.Text = "";
+        }
+
+        private void cmbClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
