@@ -118,7 +118,7 @@ namespace Password_Manager
         {
             foreach(int i in encrypt(txtPass.Text))
             {
-                lblCrypt.Text += i + "\n";
+                lblCrypt.Text += Convert.ToString(i) + "\n";
             }
         }
 
