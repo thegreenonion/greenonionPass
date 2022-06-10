@@ -33,7 +33,7 @@ namespace Password_Manager
             if(txtLogin.Text != "")
             {
                 passwd = txtLogin.Text;
-                lblA.Text = ConvertToASCIIstring(passwd) + "";
+                lblA.Text = ConvertToASCIIaddition(passwd) + "";
                 txtPass.Visible = true;
                 cmbEncrypt.Visible = true;
             }
@@ -58,14 +58,13 @@ namespace Password_Manager
             return passint;
         }
 
-        public int ConvertToASCIIstring(string s)
+        public int ConvertToASCIIaddition(string s)
         {
             pass = "";
             passint = 0;
 
             foreach (char c in s)
             {
-                //pass += System.Convert.ToInt32(c);
                 passint += System.Convert.ToInt32(c);
             }
 
@@ -87,6 +86,7 @@ namespace Password_Manager
                 //lblRandom.Text += randobj.Next() + "\n";
                 localrand = randobj.Next();
             }
+            lblRandom.Text = localrand.ToString();
             return localrand;
 
         }
@@ -94,21 +94,34 @@ namespace Password_Manager
         public int[] encrypt(string plain)     //noch nicht fertig
         {
             int x = 0;
+
             foreach (char c in plain)
             {
                 x++;
             }
             int i = 0;
+
             encrypted = new int[x];
-            foreach(char c in plain)
+            for (i = 0; i < 2; i++)
             {
-                //int k = 0;
-                localcrypt = Convert.ToInt32(c);
-                localcrypt += GetRandomNumber(SetRandomObject(passint), i);
-                //lblCrypt.Text += localcrypt + "\n";
-                encrypted[i] = localcrypt;
-                //localcrypt = localcrypt
-                i++;
+                foreach (char c in plain)
+                {
+                    //int k = 0;
+                    localcrypt = Convert.ToInt32(c);
+                    localcrypt += GetRandomNumber(SetRandomObject(passint), i);
+                    //lblCrypt.Text += localcrypt + "\n";
+                    encrypted[i] = localcrypt;
+                    //localcrypt = localcrypt
+                    i++;
+                }
+
+                if (i == 0)
+                {
+                    for (int j = 0; j < encrypted.Length; j++)
+                    {
+                        encrypted[j] = 0;
+                    }
+                }
             }
 
             return encrypted;
@@ -116,6 +129,7 @@ namespace Password_Manager
 
         private void cmbEncrypt_Click(object sender, EventArgs e)
         {
+            lblCrypt.Text = "";
             foreach(int i in encrypt(txtPass.Text))
             {
                 lblCrypt.Text += Convert.ToString(i) + "\n";
