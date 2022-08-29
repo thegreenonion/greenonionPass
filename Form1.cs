@@ -143,7 +143,7 @@ namespace Password_Manager
             {
                 lblCrypt.Text += /*Convert.ToString(i)*/i + "\n";
             }
-            //dataManager.SavePasswordArray()
+            dataManager.SavePasswordArray(txtPasswordName.Text, encrypt(txtPass.Text));
         }
 
         private void cmbClear_Click(object sender, EventArgs e)
@@ -156,31 +156,31 @@ namespace Password_Manager
             Close();
         }
 
-        public void savePasswords()
-        {
-            /*dict.Clear();
-            StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
-            var jsonString = sr.ReadLine();
-            sr.Close();*/
+        //public void savePasswords()
+        //{
+        //    /*dict.Clear();
+        //    StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
+        //    var jsonString = sr.ReadLine();
+        //    sr.Close();*/
 
-            //dict = Json.Deserialize(jsonString) as Dictionary<int, object>;
+        //    //dict = Json.Deserialize(jsonString) as Dictionary<int, object>;
 
-            int[] savecrypto = new int[encrypt(txtPass.Text).Length];
-            savecrypto = encrypt(txtPass.Text);
-            int x = 0;
-            foreach(int i in savecrypto)
-            {
-                dict.Add(x, i);
-                x++;
-            }
+        //    int[] savecrypto = new int[encrypt(txtPass.Text).Length];
+        //    savecrypto = encrypt(txtPass.Text);
+        //    int x = 0;
+        //    foreach(int i in savecrypto)
+        //    {
+        //        dict.Add(x, i);
+        //        x++;
+        //    }
 
-            var str = Json.Serialize(dict);
-            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
-            StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
-            sw.WriteLine(str);
-            sw.Flush();
-            sw.Close();
-        }
+        //    var str = Json.Serialize(dict);
+        //    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
+        //    StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
+        //    sw.WriteLine(str);
+        //    sw.Flush();
+        //    sw.Close();
+        //}
         
         private void Form1_Load(object sender, EventArgs e)
         {

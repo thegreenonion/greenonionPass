@@ -98,9 +98,9 @@
             // 
             this.cmbEncrypt.Location = new System.Drawing.Point(147, 192);
             this.cmbEncrypt.Name = "cmbEncrypt";
-            this.cmbEncrypt.Size = new System.Drawing.Size(128, 30);
+            this.cmbEncrypt.Size = new System.Drawing.Size(200, 30);
             this.cmbEncrypt.TabIndex = 6;
-            this.cmbEncrypt.Text = "Encrypt";
+            this.cmbEncrypt.Text = "Encrypt password and save";
             this.cmbEncrypt.UseVisualStyleBackColor = true;
             this.cmbEncrypt.Visible = false;
             this.cmbEncrypt.Click += new System.EventHandler(this.cmbEncrypt_Click);
