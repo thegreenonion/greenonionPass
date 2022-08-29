@@ -94,7 +94,7 @@ namespace Password_Manager
         public int[] encrypt(string plain)     //noch nicht fertig
         {
             int x = 0;
-
+            
             foreach (char c in plain)
             {
                 x++;
@@ -102,27 +102,28 @@ namespace Password_Manager
             int i = 0;
 
             encrypted = new int[x];
-            for (i = 0; i < 2; i++)
+            /*for (i = 0; i < 2; i++)
+            {*/
+            foreach (char c in plain)
             {
-                foreach (char c in plain)
-                {
-                    //int k = 0;
-                    localcrypt = Convert.ToInt32(c);
-                    localcrypt += GetRandomNumber(SetRandomObject(passint), i);
-                    //lblCrypt.Text += localcrypt + "\n";
-                    encrypted[i] = localcrypt;
-                    //localcrypt = localcrypt
-                    i++;
-                }
+                //int k = 0;
+                localcrypt = Convert.ToInt32(c);
+                encrypted[i] = localcrypt + GetRandomNumber(SetRandomObject(passint), localcrypt);
+                //localcrypt += GetRandomNumber(SetRandomObject(passint), i);
+                //lblCrypt.Text += localcrypt + "\n";
+                //encrypted[i] = localcrypt;
+                //localcrypt = localcrypt
+                i++;
+            }
 
-                if (i == 0)
+                /*if (i == 0)
                 {
                     for (int j = 0; j < encrypted.Length; j++)
                     {
                         encrypted[j] = 0;
                     }
-                }
-            }
+                }*/
+            //}
 
             return encrypted;
         }
@@ -130,9 +131,11 @@ namespace Password_Manager
         private void cmbEncrypt_Click(object sender, EventArgs e)
         {
             lblCrypt.Text = "";
-            foreach(int i in encrypt(txtPass.Text))
+            int[] showcrypto;
+            showcrypto = encrypt(txtPass.Text);
+            foreach(int i in showcrypto)
             {
-                lblCrypt.Text += Convert.ToString(i) + "\n";
+                lblCrypt.Text += /*Convert.ToString(i)*/i + "\n";
             }
         }
 
