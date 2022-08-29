@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using MiniJSON;
 
 namespace Password_Manager
 {
     public partial class Form1 : Form
     {
+        Dictionary<int, object> dict = new Dictionary<int, object>();
         public int localcrypt;
         public string ASCIIcrypt;
         public int random;
@@ -137,6 +140,7 @@ namespace Password_Manager
             {
                 lblCrypt.Text += /*Convert.ToString(i)*/i + "\n";
             }
+            savePasswords();
         }
 
         private void cmbClear_Click(object sender, EventArgs e)
@@ -147,6 +151,29 @@ namespace Password_Manager
         private void cmbClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        public void savePasswords()
+        {
+            int[] savecrypto = new int[encrypt(txtPass.Text).Length];
+            savecrypto = encrypt(txtPass.Text);
+            int x = 0;
+            foreach(int i in savecrypto)
+            {
+                dict.Add(x, i);
+                x++;
+            }
+
+            var str = Json.Serialize(dict);
+            StreamWriter sw = new StreamWriter(Application.LocalUserAppDataPath + "/" + "passwords.txt");
+            sw.WriteLine(str);
+            sw.Flush();
+            sw.Close();
+        }
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            lblA.Text = Application.LocalUserAppDataPath;
         }
     }
 }
