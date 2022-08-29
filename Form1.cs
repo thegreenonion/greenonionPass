@@ -155,6 +155,13 @@ namespace Password_Manager
 
         public void savePasswords()
         {
+            /*dict.Clear();
+            StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
+            var jsonString = sr.ReadLine();
+            sr.Close();*/
+
+            //dict = Json.Deserialize(jsonString) as Dictionary<int, object>;
+
             int[] savecrypto = new int[encrypt(txtPass.Text).Length];
             savecrypto = encrypt(txtPass.Text);
             int x = 0;
@@ -165,7 +172,8 @@ namespace Password_Manager
             }
 
             var str = Json.Serialize(dict);
-            StreamWriter sw = new StreamWriter(Application.LocalUserAppDataPath + "/" + "passwords.txt");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
+            StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
             sw.WriteLine(str);
             sw.Flush();
             sw.Close();
@@ -173,7 +181,8 @@ namespace Password_Manager
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            lblA.Text = Application.LocalUserAppDataPath;
+            lblA.Text = Application.UserAppDataPath;
+            lblA.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
 }
