@@ -184,6 +184,7 @@ namespace Password_Manager
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            loadAllPasswords();
             passwordchar = txtPass.PasswordChar;
             lblA.Text = Application.UserAppDataPath;
             lblA.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -205,6 +206,21 @@ namespace Password_Manager
                 txtPass.PasswordChar = passwordchar;
                 isPasswordVisible = false;
                 cmbPassVisibility.Text = "Make password visible";
+            }
+        }
+
+        public void loadAllPasswords()
+        {
+            string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/";
+            DirectoryInfo d = new DirectoryInfo(filepath);
+
+            foreach (var file in d.GetFiles("*.txt"))
+            {
+                lblCrypt.Text = file.Name;
+                foreach(int i in dataManager.LoadEncryptedPasswordArray(file.Name))
+                {
+                    lblCrypt.Text += i + "";
+                }
             }
         }
     }

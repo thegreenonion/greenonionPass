@@ -13,22 +13,22 @@ using MiniJSON;
 public partial class dataManager
 {
 
-    public static Dictionary<int, object> dict = new Dictionary<int, object>();
+    public static Dictionary<string, int> dict = new Dictionary<string, int>();
     // Start is called before the first frame update
 
-    public static int[] LoadPasswordArray(string passwordName)
+    public static int[] LoadEncryptedPasswordArray(string passwordName)
     {
-        StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName + ".txt");
+        StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName);
         var jsonString = sr.ReadLine();
         sr.Close();
 
         dict.Clear();
-        dict = Json.Deserialize(jsonString) as Dictionary<int, object>;
+        dict = Json.Deserialize(jsonString) as Dictionary<string, int>;
         int[] loadedcrypto = new int[dict.Count];
 
         for (int i = 0; i < dict.Count; i++)
         {
-            loadedcrypto[i] = (int)dict[i];
+            loadedcrypto[i] = dict[i + ""];
         }
 
         return loadedcrypto;
@@ -41,7 +41,7 @@ public partial class dataManager
         int x = 0;
         foreach (int i in savecrypto)
         {
-            dict.Add(x, i);
+            dict.Add(x + "", i);
             x++;
         }
         var str = Json.Serialize(dict);
