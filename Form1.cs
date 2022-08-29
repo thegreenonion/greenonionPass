@@ -15,6 +15,8 @@ namespace Password_Manager
     public partial class Form1 : Form
     {
         Dictionary<int, object> dict = new Dictionary<int, object>();
+        public bool isPasswordVisible;
+        public char passwordchar;
         public int localcrypt;
         public string ASCIIcrypt;
         public int random;
@@ -38,6 +40,7 @@ namespace Password_Manager
                 passwd = txtLogin.Text;
                 lblA.Text = ConvertToASCIIaddition(passwd) + "";
                 txtPass.Visible = true;
+                txtPasswordName.Visible = true;
                 cmbEncrypt.Visible = true;
             }
 
@@ -94,7 +97,7 @@ namespace Password_Manager
 
         }
 
-        public int[] encrypt(string plain)     //noch nicht fertig
+        public int[] encrypt(string plain)
         {
             int x = 0;
             
@@ -140,7 +143,7 @@ namespace Password_Manager
             {
                 lblCrypt.Text += /*Convert.ToString(i)*/i + "\n";
             }
-            savePasswords();
+            //dataManager.SavePasswordArray()
         }
 
         private void cmbClear_Click(object sender, EventArgs e)
@@ -181,8 +184,28 @@ namespace Password_Manager
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            passwordchar = txtPass.PasswordChar;
             lblA.Text = Application.UserAppDataPath;
             lblA.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
+        private void cmbPassVisibility_Click(object sender, EventArgs e)
+        {
+            if (!isPasswordVisible)
+            {
+                txtPass.Font = new Font("Microsoft Sans Serif", 10f);
+                txtPass.PasswordChar = (char)0;
+                isPasswordVisible = true;
+                cmbPassVisibility.Text = "Make password invisible";
+
+            }
+            else
+            {
+                txtPass.Font = new Font("Microsoft Sans Serif", 4f);
+                txtPass.PasswordChar = passwordchar;
+                isPasswordVisible = false;
+                cmbPassVisibility.Text = "Make password visible";
+            }
         }
     }
 }
