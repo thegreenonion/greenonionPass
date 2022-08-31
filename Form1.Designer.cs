@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbPassVisibility = new System.Windows.Forms.Button();
+            this.lstPassword = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // cmbLogin
@@ -162,11 +163,21 @@
             this.cmbPassVisibility.UseVisualStyleBackColor = true;
             this.cmbPassVisibility.Click += new System.EventHandler(this.cmbPassVisibility_Click);
             // 
+            // lstPassword
+            // 
+            this.lstPassword.FormattingEnabled = true;
+            this.lstPassword.ItemHeight = 16;
+            this.lstPassword.Location = new System.Drawing.Point(567, 6);
+            this.lstPassword.Name = "lstPassword";
+            this.lstPassword.Size = new System.Drawing.Size(350, 276);
+            this.lstPassword.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1237, 530);
+            this.Controls.Add(this.lstPassword);
             this.Controls.Add(this.cmbPassVisibility);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -203,6 +214,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cmbPassVisibility;
+        private System.Windows.Forms.ListBox lstPassword;
     }
 }
 

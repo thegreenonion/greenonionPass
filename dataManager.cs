@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using MiniJSON;
+using System.Collections;
 
 public partial class dataManager
 {
 
-    public static Dictionary<string, int> dict = new Dictionary<string, int>();
+    public static Dictionary<string, object> dict = new Dictionary<string, object>();
     // Start is called before the first frame update
 
     public static int[] LoadEncryptedPasswordArray(string passwordName)
@@ -23,12 +24,20 @@ public partial class dataManager
         sr.Close();
 
         dict.Clear();
-        dict = Json.Deserialize(jsonString) as Dictionary<string, int>;
-        int[] loadedcrypto = new int[dict.Count];
+        dict = Json.Deserialize(jsonString) as Dictionary<string, object>;
+
+        int x = 0;
+
+        foreach(KeyValuePair<string, object> kvp in dict)
+        {
+            x++;
+        }
+
+        int[] loadedcrypto = new int[x];
 
         for (int i = 0; i < dict.Count; i++)
         {
-            loadedcrypto[i] = dict[i + ""];
+            loadedcrypto[i] = unchecked((int)((long)dict[i + ""]));
         }
 
         return loadedcrypto;

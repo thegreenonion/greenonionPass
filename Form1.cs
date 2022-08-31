@@ -105,21 +105,25 @@ namespace Password_Manager
             {
                 x++;
             }
-            int i = 0;
 
             encrypted = new int[x];
             /*for (i = 0; i < 2; i++)
             {*/
+
+            int i = 0;
+            int j = 2;
+
             foreach (char c in plain)
             {
                 //int k = 0;
                 localcrypt = Convert.ToInt32(c);
-                encrypted[i] = localcrypt + GetRandomNumber(SetRandomObject(passint), localcrypt);
+                encrypted[i] = localcrypt + GetRandomNumber(SetRandomObject(passint), j);
                 //localcrypt += GetRandomNumber(SetRandomObject(passint), i);
                 //lblCrypt.Text += localcrypt + "\n";
                 //encrypted[i] = localcrypt;
                 //localcrypt = localcrypt
                 i++;
+                j++;
             }
 
                 /*if (i == 0)
@@ -216,12 +220,36 @@ namespace Password_Manager
 
             foreach (var file in d.GetFiles("*.txt"))
             {
-                lblCrypt.Text = file.Name;
-                foreach(int i in dataManager.LoadEncryptedPasswordArray(file.Name))
-                {
-                    lblCrypt.Text += i + "";
-                }
+                //lstPassword.Items.Add(file.Name);
+                //lblCrypt.Text = file.Name + "\n";
+                //foreach(int i in dataManager.LoadEncryptedPasswordArray(file.Name))
+                //{
+                //    lstPassword.Items.Add(i.ToString());
+                //    lblCrypt.Text += i + "\n";
+                //}
+
+                lstPassword.Items.Add(file.Name);
+                //foreach(char c in DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name)))
+                //{
+                //    lstPassword.Items.Add(c);
+                //}
+                lstPassword.Items.Add(DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name)));
             }
+        }
+
+        public char[] DecryptEncryptedPasswordArray(int[] passwordarray)
+        {
+            int decryptedPasswordCharASCII = 0;
+            int x = 0;
+            char[] decryptedPasswordArray = new char[passwordarray.Length];
+            foreach(int i in passwordarray)
+            {
+                decryptedPasswordCharASCII = i - GetRandomNumber(SetRandomObject(passint), i);
+                decryptedPasswordArray[x] = (char)i;
+                x++;
+            }
+
+            return decryptedPasswordArray;
         }
     }
 }
