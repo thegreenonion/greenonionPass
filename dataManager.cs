@@ -20,6 +20,7 @@ public partial class dataManager
     public static int[] LoadEncryptedPasswordArray(string passwordName)
     {
         StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName);
+
         var jsonString = sr.ReadLine();
         sr.Close();
 
