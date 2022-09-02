@@ -18,4 +18,4 @@ Warning: This project is in the BETA version. Project files can be found at the 
 3. Click Encrypt & Save to encrypt and save your password (when you're mistrustful look at C:\Users\xxx\Documents\ThePasswordManager and open some files, they're all encrypted!
 4. When you restart the Password manager and log in with the same master password you used to encrypt your previos saved passwords, they'll automaticly load when logging in.
 
-Note: Feel free to change your master password while usage, greenonionPass will always try to decrypt all passwords with
+Note: Feel free to change your master password while usage, greenonionPass will always try to decrypt all passwords with your entered master password. When you have passwords encrypted with other master passwords, in the list box there are only unicode-symbols f. E. ![grafik](https://user-images.githubusercontent.com/103243402/188204735-610c3220-726a-419f-8db6-e8ce77a5ca61.png)
