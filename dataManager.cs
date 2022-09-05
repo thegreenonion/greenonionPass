@@ -27,14 +27,14 @@ public partial class dataManager
         dict.Clear();
         dict = Json.Deserialize(jsonString) as Dictionary<string, object>;
 
-        int x = 0;
+        //int x = 0;
 
-        foreach(KeyValuePair<string, object> kvp in dict)
-        {
-            x++;
-        }
+        //foreach(KeyValuePair<string, object> kvp in dict)
+        //{
+        //    x++;
+        //}
 
-        int[] loadedcrypto = new int[x];
+        int[] loadedcrypto = new int[dict.Count];
 
         for (int i = 0; i < dict.Count; i++)
         {

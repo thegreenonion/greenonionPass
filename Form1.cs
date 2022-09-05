@@ -15,17 +15,17 @@ namespace Password_Manager
     public partial class Form1 : Form
     {
         Dictionary<int, object> dict = new Dictionary<int, object>();
-        public bool isPasswordVisible;
+        public bool isPasswordVisible = false;
         public char passwordchar;
-        public int localcrypt;
-        public string ASCIIcrypt;
-        public int random;
-        public int[] secret = { 1, 2, 3, 4, 5, 6 };
-        public int passint;
-        public string pass;
-        public string passwd;
-        public string passwdASCII;
-        public int localrand;
+        public int localcrypt = 0;
+        public string ASCIIcrypt = "";
+        public int random = 0;
+        //public int[] secret = { 1, 2, 3, 4, 5, 6 };
+        public int passint = 0;
+        public string pass = "";
+        public string passwd = "";
+        public string passwdASCII = "";
+        public int localrand = 0;
         public int[] encrypted;
 
         public Form1()
@@ -38,6 +38,9 @@ namespace Password_Manager
             if(txtLogin.Text != "")
             {
                 passwd = txtLogin.Text;
+                passint = ConvertToASCIIaddition(passwd);
+                lstPassword.Items.Clear();
+                loadAllPasswords();
                 lblA.Text = ConvertToASCIIaddition(passwd) + "";
                 txtPass.Visible = true;
                 txtPasswordName.Visible = true;
@@ -52,29 +55,29 @@ namespace Password_Manager
 
         public int ConvertToASCIIint(string s)
         {
-            passint = 0;
+            int localpassint = 0;
             pass = "";
 
             foreach(char c in s)
             {
                 pass += System.Convert.ToInt32(c);
             }
-            passint = System.Convert.ToInt32(pass);
+            localpassint = System.Convert.ToInt32(pass);
 
-            return passint;
+            return localpassint;
         }
 
         public int ConvertToASCIIaddition(string s)
         {
-            pass = "";
-            passint = 0;
+            //pass = "";
+            int localpassint = 0;
 
             foreach (char c in s)
             {
-                passint += System.Convert.ToInt32(c);
+                localpassint += Convert.ToInt32(c);
             }
 
-            return passint;
+            return localpassint;
         }
 
         public Random SetRandomObject(int seed)
@@ -188,7 +191,6 @@ namespace Password_Manager
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            loadAllPasswords();
             passwordchar = txtPass.PasswordChar;
             lblA.Text = Application.UserAppDataPath;
             lblA.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -215,38 +217,38 @@ namespace Password_Manager
 
         public void loadAllPasswords()
         {
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
             string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/";
             DirectoryInfo d = new DirectoryInfo(filepath);
 
             foreach (var file in d.GetFiles("*.txt"))
-            {
-                //lstPassword.Items.Add(file.Name);
-                //lblCrypt.Text = file.Name + "\n";
-                //foreach(int i in dataManager.LoadEncryptedPasswordArray(file.Name))
-                //{
-                //    lstPassword.Items.Add(i.ToString());
-                //    lblCrypt.Text += i + "\n";
-                //}
-
-                lstPassword.Items.Add(file.Name);
-                //foreach(char c in DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name)))
-                //{
-                //    lstPassword.Items.Add(c);
-                //}
-                lstPassword.Items.Add(DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name)));
+            {                
+                string decryptedPassword = "";
+                lstPassword.Items.Add("\n" + file.Name);
+                char[] decryptedPasswordChar = new char[DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name)).Length];
+                decryptedPasswordChar = DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name));
+                foreach (char c in decryptedPasswordChar)
+                {
+                    decryptedPassword += c;
+                    //lstPassword.Items.Add(c);
+                }
+                lstPassword.Items.Add(decryptedPassword);
             }
         }
 
         public char[] DecryptEncryptedPasswordArray(int[] passwordarray)
         {
             int decryptedPasswordCharASCII = 0;
-            int x = 0;
+            int x = 2;
+            int j = 0;
             char[] decryptedPasswordArray = new char[passwordarray.Length];
+            
             foreach(int i in passwordarray)
             {
-                decryptedPasswordCharASCII = i - GetRandomNumber(SetRandomObject(passint), i);
-                decryptedPasswordArray[x] = (char)i;
+                decryptedPasswordCharASCII = i - GetRandomNumber(SetRandomObject(passint), x);
+                decryptedPasswordArray[j] = (char)decryptedPasswordCharASCII;
                 x++;
+                j++;
             }
 
             return decryptedPasswordArray;
