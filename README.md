@@ -14,6 +14,8 @@ Note: This project may contain bugs. Feel free to report them at https://www.git
 
 4. Double-click setup.exe to automaticly install greenonionPass
 
+WARNING: It is highly recommended for your safety to download always the newest version of greenonionPass!
+
 # Usage
 
 1. Enter your master password in the text box at the screen middle.
