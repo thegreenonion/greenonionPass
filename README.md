@@ -1,8 +1,8 @@
 # greenonionPass
 
 This is my Password Manager written in C#.
-This project is in the BETA version. This means,
-it contains unfixed bugs and may contain undeteckted and unfixed bugs.
+Official release at 05.09.2022
+Note: This project may contain bugs.
 
 # Installation
 1. Go to the /release v. x.x.x.x and download the WHOLE folder
