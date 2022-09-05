@@ -2,7 +2,7 @@
 
 This is my Password Manager written in C#.
 Official release at 05.09.2022
-Note: This project may contain bugs.
+Note: This project may contain bugs. Feel free to report them at https://www.github.com/thegreenonion/greenonionPass/issues/new
 
 # Installation
 1. Go to the /release v. x.x.x.x and download the WHOLE folder
