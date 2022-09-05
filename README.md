@@ -9,8 +9,6 @@ Note: This project may contain bugs.
 
 2. Double-click setup.exe to automaticly install greenonionPass
 
-Warning: This project is in the BETA version. Project files can be found at the main branch.
-
 # Usage
 
 1. Enter your master password in the text box at the screen middle.
