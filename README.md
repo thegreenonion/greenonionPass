@@ -1,15 +1,20 @@
 # greenonionPass
 
 This is my Password Manager written in C#.
-This project is in the BETA version. This means,
-it contains unfixed bugs and may contain undeteckted and unfixed bugs.
+Official release at 05.09.2022
+
+Note: This project may contain bugs. Feel free to report them at https://www.github.com/thegreenonion/greenonionPass/issues/new
 
 # Installation
-1. Go to the /release v. x.x.x.x and download the WHOLE folder
+1. Click on the release you want to download
 
-2. Double-click setup.exe to automaticly install greenonionPass
+2. Download "Release v. x.x.x.x.zip"
 
-Warning: This project is in the BETA version. Project files can be found at the main branch.
+3. Extract ALL files on your PC
+
+4. Double-click setup.exe to automaticly install greenonionPass
+
+WARNING: It is highly recommended for your safety to download always the newest version of greenonionPass!
 
 # Usage
 
