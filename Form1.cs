@@ -39,14 +39,20 @@ namespace Password_Manager
             {
                 passwd = txtLogin.Text;
                 passint = ConvertToASCIIaddition(passwd);
-                pass = passint.ToString() + nudPIN.Value.ToString();
-                passint = Int32.Parse(pass);
+                if (chkPIN.Checked)
+                {
+                    pass = passint.ToString() + nudPIN.Value.ToString();
+                    passint = Int32.Parse(pass);
+                }
                 lstPassword.Items.Clear();
                 loadAllPasswords();
                 lblA.Text = passint + "";
                 txtPass.Visible = true;
                 txtPasswordName.Visible = true;
                 cmbEncrypt.Visible = true;
+                cmbPassVisibility.Visible = true;
+                label1.Visible = true;
+                label2.Visible = true;
             }
 
 
@@ -155,11 +161,6 @@ namespace Password_Manager
             dataManager.SavePasswordArray(txtPasswordName.Text, encrypt(txtPass.Text));
         }
 
-        private void cmbClear_Click(object sender, EventArgs e)
-        {
-            lblCrypt.Text = "";
-        }
-
         private void cmbClose_Click(object sender, EventArgs e)
         {
             Close();
@@ -252,6 +253,38 @@ namespace Password_Manager
             }
 
             return decryptedPasswordArray;
+        }
+
+        private void chkPIN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkPIN.Checked)
+            {
+                nudPIN.Visible = false;
+                label4.Visible = false;
+            }
+            else
+            {
+                nudPIN.Visible = true;
+                label4.Visible = true;
+            }
+        }
+
+        private void cmbLock_Click(object sender, EventArgs e)
+        {
+            lstPassword.Items.Clear();
+            txtPass.Text = "";
+            nudPIN.Value = 0;
+            txtLogin.Text = "";
+            txtPasswordName.Text = "";
+            lblA.Text = "";
+            lblCrypt.Text = "";
+            lblRandom.Text = "";
+            label1.Visible = false;
+            label2.Visible = false;
+            txtPasswordName.Visible = false;
+            txtPass.Visible = false;
+            cmbEncrypt.Visible = false;
+            cmbPassVisibility.Visible = false;
         }
     }
 }

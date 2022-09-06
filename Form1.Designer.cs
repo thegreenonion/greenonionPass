@@ -35,7 +35,6 @@
             this.lblCrypt = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.cmbEncrypt = new System.Windows.Forms.Button();
-            this.cmbClear = new System.Windows.Forms.Button();
             this.cmbClose = new System.Windows.Forms.Button();
             this.txtPasswordName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,6 +44,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.nudPIN = new System.Windows.Forms.NumericUpDown();
+            this.chkPIN = new System.Windows.Forms.CheckBox();
+            this.cmbLock = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudPIN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             // lblA
             // 
             this.lblA.AutoSize = true;
-            this.lblA.Location = new System.Drawing.Point(575, 332);
+            this.lblA.Location = new System.Drawing.Point(917, 317);
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(0, 16);
             this.lblA.TabIndex = 2;
@@ -110,16 +111,6 @@
             this.cmbEncrypt.Visible = false;
             this.cmbEncrypt.Click += new System.EventHandler(this.cmbEncrypt_Click);
             // 
-            // cmbClear
-            // 
-            this.cmbClear.Location = new System.Drawing.Point(1112, 13);
-            this.cmbClear.Name = "cmbClear";
-            this.cmbClear.Size = new System.Drawing.Size(113, 28);
-            this.cmbClear.TabIndex = 7;
-            this.cmbClear.Text = "Clear";
-            this.cmbClear.UseVisualStyleBackColor = true;
-            this.cmbClear.Click += new System.EventHandler(this.cmbClear_Click);
-            // 
             // cmbClose
             // 
             this.cmbClose.BackColor = System.Drawing.Color.Red;
@@ -147,6 +138,7 @@
             this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 10;
             this.label1.Text = "Password name";
+            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -156,6 +148,7 @@
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 11;
             this.label2.Text = "Password";
+            this.label2.Visible = false;
             // 
             // cmbPassVisibility
             // 
@@ -165,6 +158,7 @@
             this.cmbPassVisibility.TabIndex = 12;
             this.cmbPassVisibility.Text = "Make password visible";
             this.cmbPassVisibility.UseVisualStyleBackColor = true;
+            this.cmbPassVisibility.Visible = false;
             this.cmbPassVisibility.Click += new System.EventHandler(this.cmbPassVisibility_Click);
             // 
             // lstPassword
@@ -207,11 +201,37 @@
             this.nudPIN.Size = new System.Drawing.Size(120, 22);
             this.nudPIN.TabIndex = 16;
             // 
+            // chkPIN
+            // 
+            this.chkPIN.AutoSize = true;
+            this.chkPIN.Checked = true;
+            this.chkPIN.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPIN.Location = new System.Drawing.Point(395, 367);
+            this.chkPIN.Name = "chkPIN";
+            this.chkPIN.Size = new System.Drawing.Size(104, 20);
+            this.chkPIN.TabIndex = 17;
+            this.chkPIN.Text = "PIN enabled";
+            this.chkPIN.UseVisualStyleBackColor = true;
+            this.chkPIN.CheckedChanged += new System.EventHandler(this.chkPIN_CheckedChanged);
+            // 
+            // cmbLock
+            // 
+            this.cmbLock.BackColor = System.Drawing.Color.Lime;
+            this.cmbLock.Location = new System.Drawing.Point(971, 53);
+            this.cmbLock.Name = "cmbLock";
+            this.cmbLock.Size = new System.Drawing.Size(225, 51);
+            this.cmbLock.TabIndex = 18;
+            this.cmbLock.Text = "Lock and Clear";
+            this.cmbLock.UseVisualStyleBackColor = false;
+            this.cmbLock.Click += new System.EventHandler(this.cmbLock_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1237, 530);
+            this.Controls.Add(this.cmbLock);
+            this.Controls.Add(this.chkPIN);
             this.Controls.Add(this.nudPIN);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -221,7 +241,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPasswordName);
             this.Controls.Add(this.cmbClose);
-            this.Controls.Add(this.cmbClear);
             this.Controls.Add(this.cmbEncrypt);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.lblCrypt);
@@ -247,7 +266,6 @@
         private System.Windows.Forms.Label lblCrypt;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Button cmbEncrypt;
-        private System.Windows.Forms.Button cmbClear;
         private System.Windows.Forms.Button cmbClose;
         private System.Windows.Forms.TextBox txtPasswordName;
         private System.Windows.Forms.Label label1;
@@ -257,6 +275,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown nudPIN;
+        private System.Windows.Forms.CheckBox chkPIN;
+        private System.Windows.Forms.Button cmbLock;
     }
 }
 
