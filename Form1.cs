@@ -39,9 +39,11 @@ namespace Password_Manager
             {
                 passwd = txtLogin.Text;
                 passint = ConvertToASCIIaddition(passwd);
+                pass = passint.ToString() + nudPIN.Value.ToString();
+                passint = Int32.Parse(pass);
                 lstPassword.Items.Clear();
                 loadAllPasswords();
-                lblA.Text = ConvertToASCIIaddition(passwd) + "";
+                lblA.Text = passint + "";
                 txtPass.Visible = true;
                 txtPasswordName.Visible = true;
                 cmbEncrypt.Visible = true;
@@ -60,9 +62,9 @@ namespace Password_Manager
 
             foreach(char c in s)
             {
-                pass += System.Convert.ToInt32(c);
+                pass += Convert.ToInt32(c);
             }
-            localpassint = System.Convert.ToInt32(pass);
+            localpassint = Convert.ToInt32(pass);
 
             return localpassint;
         }
@@ -192,8 +194,6 @@ namespace Password_Manager
         private void Form1_Load(object sender, EventArgs e)
         {
             passwordchar = txtPass.PasswordChar;
-            lblA.Text = Application.UserAppDataPath;
-            lblA.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
 
         private void cmbPassVisibility_Click(object sender, EventArgs e)
