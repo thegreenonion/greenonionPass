@@ -85,7 +85,7 @@
             // lblCrypt
             // 
             this.lblCrypt.AutoSize = true;
-            this.lblCrypt.Location = new System.Drawing.Point(1143, 74);
+            this.lblCrypt.Location = new System.Drawing.Point(1025, 218);
             this.lblCrypt.Name = "lblCrypt";
             this.lblCrypt.Size = new System.Drawing.Size(0, 16);
             this.lblCrypt.TabIndex = 4;
@@ -217,7 +217,7 @@
             // cmbLock
             // 
             this.cmbLock.BackColor = System.Drawing.Color.Lime;
-            this.cmbLock.Location = new System.Drawing.Point(971, 53);
+            this.cmbLock.Location = new System.Drawing.Point(1000, 45);
             this.cmbLock.Name = "cmbLock";
             this.cmbLock.Size = new System.Drawing.Size(225, 51);
             this.cmbLock.TabIndex = 18;

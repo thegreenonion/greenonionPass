@@ -55,7 +55,9 @@ public partial class dataManager
             x++;
         }
         var str = Json.Serialize(dict);
-        Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
+        //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
+        //DirectoryInfo dirInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+        //dirInfo.Attributes &= ~FileAttributes.ReadOnly;
         StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName + ".txt");
         sw.WriteLine(str);
         sw.Flush();
