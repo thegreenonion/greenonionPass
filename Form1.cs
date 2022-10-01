@@ -365,5 +365,29 @@ namespace Password_Manager
                         "or item selected is no file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }*/
         }
+
+        private static string Encrypt_AES(string content, string password)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(content);
+
+            using(SymmetricAlgorithm crypt = Aes.Create())
+            using(HashAlgorithm hash = MD5.Create())
+            using(MemoryStream memoryStream = new MemoryStream())
+            {
+                crypt.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+                crypt.GenerateIV();
+
+                using (CryptoStream cryptoStream = new CryptoStream(
+                    memoryStream, crypt.CreateEncryptor(), CryptoStreamMode.Write))
+                {
+                    cryptoStream.Write(bytes, 0, bytes.Length);
+                }
+
+                string base64IV = Convert.ToBase64String(crypt.IV);
+                string base64Ciphertext = Convert.ToBase64String(memoryStream.ToArray());
+
+                return base64IV + "!" + base64Ciphertext;
+            }
+        }
     }
 }
