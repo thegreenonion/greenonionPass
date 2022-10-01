@@ -14,6 +14,8 @@ Note: This project may contain bugs. Feel free to report them at https://www.git
 
 4. Double-click setup.exe to automaticly install greenonionPass
 
+5. Make sure you have have disabled controlled folder access in the windows-safety app or granted greenonionPass privileges to access controlled folders.
+
 WARNING: It is highly recommended for your safety to download always the newest version of greenonionPass!
 
 # Usage
