@@ -58,7 +58,7 @@ public partial class dataManager
         //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
         //DirectoryInfo dirInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
         //dirInfo.Attributes &= ~FileAttributes.ReadOnly;
-        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName + ".txt");
+        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName + ".gppass");
         sw.WriteLine(str);
         sw.Flush();
         sw.Close();

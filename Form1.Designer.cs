@@ -46,6 +46,7 @@
             this.nudPIN = new System.Windows.Forms.NumericUpDown();
             this.chkPIN = new System.Windows.Forms.CheckBox();
             this.cmbLock = new System.Windows.Forms.Button();
+            this.cmdDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudPIN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,7 +115,7 @@
             // cmbClose
             // 
             this.cmbClose.BackColor = System.Drawing.Color.Red;
-            this.cmbClose.Location = new System.Drawing.Point(1096, 481);
+            this.cmbClose.Location = new System.Drawing.Point(1204, 587);
             this.cmbClose.Name = "cmbClose";
             this.cmbClose.Size = new System.Drawing.Size(129, 37);
             this.cmbClose.TabIndex = 8;
@@ -225,11 +226,22 @@
             this.cmbLock.UseVisualStyleBackColor = false;
             this.cmbLock.Click += new System.EventHandler(this.cmbLock_Click);
             // 
+            // cmdDelete
+            // 
+            this.cmdDelete.Location = new System.Drawing.Point(150, 295);
+            this.cmdDelete.Name = "cmdDelete";
+            this.cmdDelete.Size = new System.Drawing.Size(197, 37);
+            this.cmdDelete.TabIndex = 19;
+            this.cmdDelete.Text = "Delete selected password";
+            this.cmdDelete.UseVisualStyleBackColor = true;
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1237, 530);
+            this.ClientSize = new System.Drawing.Size(1345, 636);
+            this.Controls.Add(this.cmdDelete);
             this.Controls.Add(this.cmbLock);
             this.Controls.Add(this.chkPIN);
             this.Controls.Add(this.nudPIN);
@@ -277,6 +289,7 @@
         private System.Windows.Forms.NumericUpDown nudPIN;
         private System.Windows.Forms.CheckBox chkPIN;
         private System.Windows.Forms.Button cmbLock;
+        private System.Windows.Forms.Button cmdDelete;
     }
 }
 

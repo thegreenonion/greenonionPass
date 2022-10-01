@@ -163,7 +163,7 @@ namespace Password_Manager
                 lblCrypt.Text += /*Convert.ToString(i)*/i + "\n";
             }
             if(File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + 
-                "/ThePasswordManager/" + txtPasswordName.Text + ".txt"))
+                "/ThePasswordManager/" + txtPasswordName.Text + ".gppass"))
             {
                 MessageBox.Show("Please enter the password you first encrypted this file to overwrite it " +
                     "in the text box named ", "Overwrite password",
@@ -233,7 +233,7 @@ namespace Password_Manager
             string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/";
             DirectoryInfo d = new DirectoryInfo(filepath);
 
-            foreach (var file in d.GetFiles("*.txt"))
+            foreach (var file in d.GetFiles("*.gppass"))
             {
                 lblA.Text = file.Name;
                 //File.SetAttributes(file.Name.ToString(), FileAttributes.Normal);
@@ -338,6 +338,32 @@ namespace Password_Manager
             }
 
             return result;
+        }
+
+        private void cmdDelete_Click(object sender, EventArgs e)
+        {
+            if (lstPassword.SelectedItems.Count != 0)
+            {
+                //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\" + lstPassword.SelectedItem.ToString());
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\" + lstPassword.SelectedItem.ToString()))
+                {
+                    lstPassword.Items.RemoveAt(lstPassword.SelectedIndex + 1);
+                    lstPassword.Items.RemoveAt(lstPassword.SelectedIndex);
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                        "/ThePasswordManager/" + lstPassword.SelectedItem.ToString());
+
+                }
+                else
+                {
+                    MessageBox.Show("File does not exist or no item selected" +
+                        "or item selected is no file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            }
+            /*else
+            {
+                MessageBox.Show("File does not exist or no item selected" +
+                        "or item selected is no file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }*/
         }
     }
 }
