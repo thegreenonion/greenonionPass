@@ -329,6 +329,16 @@ namespace Password_Manager
             }
         }
 
+        public static byte[] GetByteSha256Hash(string text)
+        {
+            using (var sha = new System.Security.Cryptography.SHA256Managed())
+            {
+                byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
+                byte[] hash = sha.ComputeHash(textData);
+                return hash;
+            }
+        }
+
         public static int ConvertStringToInt(string inputstring)
         {
             int result = 0;
@@ -366,28 +376,26 @@ namespace Password_Manager
             }*/
         }
 
-        private static string Encrypt_AES(string content, string password)
+        private void cmbTest_Click(object sender, EventArgs e)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(content);
+            lblTestEnc.Text = AES_Manager.Encrypt("123456", "hallo");
+        }
 
-            using(SymmetricAlgorithm crypt = Aes.Create())
-            using(HashAlgorithm hash = MD5.Create())
-            using(MemoryStream memoryStream = new MemoryStream())
+        public byte[] ComputeIVandKey(string password)
+        {
+            using (SymmetricAlgorithm crypt = Aes.Create())
+            using (HashAlgorithm hash = MD5.Create())
             {
                 crypt.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
                 crypt.GenerateIV();
 
-                using (CryptoStream cryptoStream = new CryptoStream(
-                    memoryStream, crypt.CreateEncryptor(), CryptoStreamMode.Write))
-                {
-                    cryptoStream.Write(bytes, 0, bytes.Length);
-                }
-
-                string base64IV = Convert.ToBase64String(crypt.IV);
-                string base64Ciphertext = Convert.ToBase64String(memoryStream.ToArray());
-
-                return base64IV + "!" + base64Ciphertext;
+                return crypt.IV;
             }
+        }
+
+        private void cmbTestDec_Click(object sender, EventArgs e)
+        {
+            lblDec.Text = AES_Manager.Decrypt(lblTestEnc.Text, "hallo");
         }
     }
 }
