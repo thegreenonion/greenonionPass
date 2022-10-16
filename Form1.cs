@@ -39,6 +39,7 @@ namespace Password_Manager
         {
             if(txtLogin.Text != "")
             {
+                cobEncryption.Visible = true;
                 passwd = txtLogin.Text;
                 //passint = ConvertToASCIIaddition(passwd);
                 passint = ConvertStringToInt(GetStringSha256Hash(passwd));
@@ -156,20 +157,35 @@ namespace Password_Manager
         private void cmbEncrypt_Click(object sender, EventArgs e)
         {
             lblCrypt.Text = "";
-            int[] showcrypto;
-            showcrypto = encrypt(txtPass.Text);
-            foreach(int i in showcrypto)
+            if(cobEncryption.Text == "Use ASCII-Shuffler encryption")
             {
-                lblCrypt.Text += /*Convert.ToString(i)*/i + "\n";
+                int[] showcrypto;
+                showcrypto = encrypt(txtPass.Text);
+                foreach (int i in showcrypto)
+                {
+                    lblCrypt.Text += /*Convert.ToString(i)*/i + "\n";
+                }
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                    "/ThePasswordManager/" + txtPasswordName.Text + ".gppass"))
+                {
+                    MessageBox.Show("Please enter the password you first encrypted this file to overwrite it " +
+                        "in the text box named ", "Overwrite password",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                }
+                dataManager.SavePasswordArray(txtPasswordName.Text, encrypt(txtPass.Text));
             }
-            if(File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + 
-                "/ThePasswordManager/" + txtPasswordName.Text + ".gppass"))
+            else if(cobEncryption.Text == "Use AES encryption")
             {
-                MessageBox.Show("Please enter the password you first encrypted this file to overwrite it " +
-                    "in the text box named ", "Overwrite password",
-                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                string aescrypt = AES_Manager.Encrypt(txtPass.Text, GetStringSha256Hash(txtLogin.Text));
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                    "/ThePasswordManager/" + txtPasswordName.Text + ".gppass"))
+                {
+                    MessageBox.Show("Please enter the password you first encrypted this file to overwrite it " +
+                        "in the text box named ", "Overwrite password",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                }
+                dataManager.SavePasswordString(txtPasswordName.Text, aescrypt);
             }
-            dataManager.SavePasswordArray(txtPasswordName.Text, encrypt(txtPass.Text));
         }
 
         private void cmbClose_Click(object sender, EventArgs e)
@@ -206,6 +222,7 @@ namespace Password_Manager
         private void Form1_Load(object sender, EventArgs e)
         {
             passwordchar = txtPass.PasswordChar;
+            cobEncryption.Text = "Use ASCII-Shuffler encryption";
         }
 
         private void cmbPassVisibility_Click(object sender, EventArgs e)
@@ -235,7 +252,7 @@ namespace Password_Manager
 
             foreach (var file in d.GetFiles("*.gppass"))
             {
-                lblA.Text = file.Name;
+                /*lblA.Text = file.Name;
                 //File.SetAttributes(file.Name.ToString(), FileAttributes.Normal);
                 string decryptedPassword = "";
                 lstPassword.Items.Add("\n" + file.Name);
@@ -247,6 +264,9 @@ namespace Password_Manager
                     //lstPassword.Items.Add(c);
                 }
                 lstPassword.Items.Add(decryptedPassword);
+                lstPassword.Items.Add("");*/
+
+                lstPassword.Items.Add(DecryptAesCipherPassword(dataManager.LoadEncryptedPasswordString(file.Name), GetStringSha256Hash(txtLogin.Text)));
                 lstPassword.Items.Add("");
             }
         }
@@ -269,6 +289,13 @@ namespace Password_Manager
             return decryptedPasswordArray;
         }
 
+        public string DecryptAesCipherPassword(string cipherPassword, string password)
+        {
+            string dec = AES_Manager.Decrypt(cipherPassword, password);
+
+            return dec;
+        }
+
         private void chkPIN_CheckedChanged(object sender, EventArgs e)
         {
             if (!chkPIN.Checked)
@@ -285,6 +312,7 @@ namespace Password_Manager
 
         private void cmbLock_Click(object sender, EventArgs e)
         {
+            cobEncryption.Visible = false;
             lstPassword.Items.Clear();
             txtPass.Text = "";
             nudPIN.Value = 0;
@@ -381,7 +409,7 @@ namespace Password_Manager
             lblTestEnc.Text = AES_Manager.Encrypt("123456", "hallo");
         }
 
-        public byte[] ComputeIVandKey(string password)
+        public byte[] ComputeIV(string password)
         {
             using (SymmetricAlgorithm crypt = Aes.Create())
             using (HashAlgorithm hash = MD5.Create())

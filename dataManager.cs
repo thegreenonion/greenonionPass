@@ -44,6 +44,51 @@ public partial class dataManager
         return loadedcrypto;
     }
 
+    public static string LoadEncryptedPasswordString(string passwordName)
+    {
+        StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName);
+
+        var jsonString = sr.ReadLine();
+        sr.Close();
+
+        dict.Clear();
+        dict = Json.Deserialize(jsonString) as Dictionary<string, object>;
+
+        string[] parts = passwordName.Split(new char[] { '.' });
+
+        //int x = 0;
+
+        //foreach(KeyValuePair<string, object> kvp in dict)
+        //{
+        //    x++;
+        //}
+
+        string loadedcrypto = unchecked((string)((string)dict[parts[0]]));
+
+        /*for (int i = 0; i < dict.Count; i++)
+        {
+            loadedcrypto[i] = unchecked((int)((long)dict[i + ""]));
+        }*/
+
+        return loadedcrypto;
+    }
+
+    public static void SavePasswordString(string passwordName, string cipherPassword)
+    {
+        dict.Clear();
+
+        dict.Add(passwordName, cipherPassword);
+
+        var str = Json.Serialize(dict);
+        //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
+        //DirectoryInfo dirInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+        //dirInfo.Attributes &= ~FileAttributes.ReadOnly;
+        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName + ".gppass");
+        sw.WriteLine(str);
+        sw.Flush();
+        sw.Close();
+    }
+
     public static void SavePasswordArray(string passwordName, int[] savecrypto)
     {
         dict.Clear();

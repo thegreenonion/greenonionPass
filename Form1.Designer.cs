@@ -51,6 +51,8 @@
             this.lblTestEnc = new System.Windows.Forms.Label();
             this.cmbTestDec = new System.Windows.Forms.Button();
             this.lblDec = new System.Windows.Forms.Label();
+            this.cobEncryption = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudPIN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,7 +100,7 @@
             // txtPass
             // 
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 4F);
-            this.txtPass.Location = new System.Drawing.Point(147, 130);
+            this.txtPass.Location = new System.Drawing.Point(144, 94);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '♦';
             this.txtPass.Size = new System.Drawing.Size(200, 15);
@@ -107,7 +109,7 @@
             // 
             // cmbEncrypt
             // 
-            this.cmbEncrypt.Location = new System.Drawing.Point(147, 192);
+            this.cmbEncrypt.Location = new System.Drawing.Point(144, 189);
             this.cmbEncrypt.Name = "cmbEncrypt";
             this.cmbEncrypt.Size = new System.Drawing.Size(200, 30);
             this.cmbEncrypt.TabIndex = 6;
@@ -129,7 +131,7 @@
             // 
             // txtPasswordName
             // 
-            this.txtPasswordName.Location = new System.Drawing.Point(147, 67);
+            this.txtPasswordName.Location = new System.Drawing.Point(144, 31);
             this.txtPasswordName.Name = "txtPasswordName";
             this.txtPasswordName.Size = new System.Drawing.Size(200, 22);
             this.txtPasswordName.TabIndex = 9;
@@ -138,7 +140,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(147, 45);
+            this.label1.Location = new System.Drawing.Point(144, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 10;
@@ -148,7 +150,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(147, 111);
+            this.label2.Location = new System.Drawing.Point(144, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 11;
@@ -157,7 +159,7 @@
             // 
             // cmbPassVisibility
             // 
-            this.cmbPassVisibility.Location = new System.Drawing.Point(369, 130);
+            this.cmbPassVisibility.Location = new System.Drawing.Point(376, 80);
             this.cmbPassVisibility.Name = "cmbPassVisibility";
             this.cmbPassVisibility.Size = new System.Drawing.Size(185, 36);
             this.cmbPassVisibility.TabIndex = 12;
@@ -278,11 +280,36 @@
             this.lblDec.TabIndex = 23;
             this.lblDec.Text = "label5";
             // 
+            // cobEncryption
+            // 
+            this.cobEncryption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobEncryption.FormattingEnabled = true;
+            this.cobEncryption.Items.AddRange(new object[] {
+            "Use ASCII-Shuffler encryption",
+            "Use AES encryption"});
+            this.cobEncryption.Location = new System.Drawing.Point(144, 143);
+            this.cobEncryption.Name = "cobEncryption";
+            this.cobEncryption.Size = new System.Drawing.Size(200, 24);
+            this.cobEncryption.TabIndex = 24;
+            this.cobEncryption.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(141, 124);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(112, 16);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Choose algorithm";
+            this.label5.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1345, 636);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cobEncryption);
             this.Controls.Add(this.lblDec);
             this.Controls.Add(this.cmbTestDec);
             this.Controls.Add(this.lblTestEnc);
@@ -340,6 +367,8 @@
         private System.Windows.Forms.Label lblTestEnc;
         private System.Windows.Forms.Button cmbTestDec;
         private System.Windows.Forms.Label lblDec;
+        private System.Windows.Forms.ComboBox cobEncryption;
+        private System.Windows.Forms.Label label5;
     }
 }
 
