@@ -247,15 +247,16 @@ namespace Password_Manager
         public void loadAllPasswords()
         {
             //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
-            string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/";
+            string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/ASCII_Shuffler/";
             DirectoryInfo d = new DirectoryInfo(filepath);
 
             foreach (var file in d.GetFiles("*.gppass"))
             {
-                /*lblA.Text = file.Name;
+                string[] parts = file.Name.Split(new char[] { '.' });
+                lblA.Text = file.Name;
                 //File.SetAttributes(file.Name.ToString(), FileAttributes.Normal);
                 string decryptedPassword = "";
-                lstPassword.Items.Add("\n" + file.Name);
+                lstPassword.Items.Add("\nPassword name: " + parts[0]);
                 char[] decryptedPasswordChar = new char[DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name)).Length];
                 decryptedPasswordChar = DecryptEncryptedPasswordArray(dataManager.LoadEncryptedPasswordArray(file.Name));
                 foreach (char c in decryptedPasswordChar)
@@ -264,8 +265,19 @@ namespace Password_Manager
                     //lstPassword.Items.Add(c);
                 }
                 lstPassword.Items.Add(decryptedPassword);
-                lstPassword.Items.Add("");*/
+                lstPassword.Items.Add("");
 
+                /*lstPassword.Items.Add(DecryptAesCipherPassword(dataManager.LoadEncryptedPasswordString(file.Name), GetStringSha256Hash(txtLogin.Text)));
+                lstPassword.Items.Add("");*/
+            }
+
+            filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/AES/";
+            d = new DirectoryInfo(filepath);
+
+            foreach (var file in d.GetFiles("*.gppass"))
+            {
+                string[] parts = file.Name.Split(new char[] { '.' });
+                lstPassword.Items.Add("Password name: " + parts[0]);
                 lstPassword.Items.Add(DecryptAesCipherPassword(dataManager.LoadEncryptedPasswordString(file.Name), GetStringSha256Hash(txtLogin.Text)));
                 lstPassword.Items.Add("");
             }

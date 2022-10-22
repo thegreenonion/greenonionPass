@@ -19,7 +19,7 @@ public partial class dataManager
 
     public static int[] LoadEncryptedPasswordArray(string passwordName)
     {
-        StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName);
+        StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/ASCII_Shuffler/" + passwordName);
 
         var jsonString = sr.ReadLine();
         sr.Close();
@@ -46,7 +46,7 @@ public partial class dataManager
 
     public static string LoadEncryptedPasswordString(string passwordName)
     {
-        StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName);
+        StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/AES/" + passwordName);
 
         var jsonString = sr.ReadLine();
         sr.Close();
@@ -83,7 +83,7 @@ public partial class dataManager
         //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
         //DirectoryInfo dirInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
         //dirInfo.Attributes &= ~FileAttributes.ReadOnly;
-        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName + ".gppass");
+        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/AES/" + passwordName + ".gppass");
         sw.WriteLine(str);
         sw.Flush();
         sw.Close();
@@ -103,7 +103,7 @@ public partial class dataManager
         //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
         //DirectoryInfo dirInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
         //dirInfo.Attributes &= ~FileAttributes.ReadOnly;
-        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + passwordName + ".gppass");
+        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/ASCII_Shuffler/" + passwordName + ".gppass");
         sw.WriteLine(str);
         sw.Flush();
         sw.Close();
