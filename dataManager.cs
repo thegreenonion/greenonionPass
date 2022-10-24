@@ -44,7 +44,7 @@ public partial class dataManager
         return loadedcrypto;
     }
 
-    public static string LoadEncryptedPasswordString(string passwordName)
+    public static string[] LoadEncryptedPasswordString(string passwordName)
     {
         StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/AES/" + passwordName);
 
@@ -65,20 +65,24 @@ public partial class dataManager
 
         string loadedcrypto = unchecked((string)((string)dict[parts[0]]));
 
+        string[] output = new string[2];
+        output[0] = loadedcrypto;
+        output[1] = unchecked((string)(string)dict["passwd"]);
+
         /*for (int i = 0; i < dict.Count; i++)
         {
             loadedcrypto[i] = unchecked((int)((long)dict[i + ""]));
         }*/
 
-        return loadedcrypto;
+        return output;
     }
 
-    public static void SavePasswordString(string passwordName, string cipherPassword)
+    public static void SavePasswordString(string passwordName, string cipherText, string password)
     {
         dict.Clear();
 
-        dict.Add(passwordName, cipherPassword);
-
+        dict.Add(passwordName, cipherText);
+        dict.Add("passwd", password);
         var str = Json.Serialize(dict);
         //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
         //DirectoryInfo dirInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));

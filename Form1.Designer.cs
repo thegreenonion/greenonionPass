@@ -285,7 +285,8 @@
             this.cobEncryption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobEncryption.FormattingEnabled = true;
             this.cobEncryption.Items.AddRange(new object[] {
-            "Use ASCII-Shuffler encryption"});
+            "Use ASCII-Shuffler encryption",
+            "Use AES encryption"});
             this.cobEncryption.Location = new System.Drawing.Point(144, 143);
             this.cobEncryption.Name = "cobEncryption";
             this.cobEncryption.Size = new System.Drawing.Size(200, 24);

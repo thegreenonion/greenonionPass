@@ -184,7 +184,7 @@ namespace Password_Manager
                         "in the text box named ", "Overwrite password",
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 }
-                dataManager.SavePasswordString(txtPasswordName.Text, aescrypt);
+                dataManager.SavePasswordString(txtPasswordName.Text, aescrypt, GetStringSha256Hash(txtLogin.Text));
             }
         }
 
@@ -249,6 +249,8 @@ namespace Password_Manager
             //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
             string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/ASCII_Shuffler/";
             DirectoryInfo d = new DirectoryInfo(filepath);
+            lstPassword.Items.Add("ASCII-SHUFFLER ENCRYPTED PASSWORDS:");
+            lstPassword.Items.Add("");
 
             foreach (var file in d.GetFiles("*.gppass"))
             {
@@ -274,12 +276,18 @@ namespace Password_Manager
             filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/AES/";
             d = new DirectoryInfo(filepath);
 
+            lstPassword.Items.Add("AES ENCRYPTED PASSWORDS:");
+            lstPassword.Items.Add("");
+
             foreach (var file in d.GetFiles("*.gppass"))
             {
                 string[] parts = file.Name.Split(new char[] { '.' });
-                lstPassword.Items.Add("Password name: " + parts[0]);
-                lstPassword.Items.Add(DecryptAesCipherPassword(dataManager.LoadEncryptedPasswordString(file.Name), GetStringSha256Hash(txtLogin.Text)));
-                lstPassword.Items.Add("");
+                if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text))
+                {
+                    lstPassword.Items.Add("Password name: " + parts[0]);
+                    lstPassword.Items.Add(DecryptAesCipherPassword(dataManager.LoadEncryptedPasswordString(file.Name)[0], GetStringSha256Hash(txtLogin.Text)));
+                    lstPassword.Items.Add("");
+                }
             }
         }
 
