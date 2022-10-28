@@ -275,9 +275,22 @@ namespace Password_Manager
 
             filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/AES/";
             d = new DirectoryInfo(filepath);
+            int abc = 0;
 
-            lstPassword.Items.Add("AES ENCRYPTED PASSWORDS:");
-            lstPassword.Items.Add("");
+            foreach (var file in d.GetFiles("*.gppass"))
+            {
+                if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text))
+                {
+                    abc++;
+                }
+            }
+            if(abc != 0)
+            {
+                lstPassword.Items.Add("AES ENCRPYPTED PASSWORDS:");
+                lstPassword.Items.Add("");
+            }
+
+            int x = 0;
 
             foreach (var file in d.GetFiles("*.gppass"))
             {
@@ -287,6 +300,22 @@ namespace Password_Manager
                     lstPassword.Items.Add("Password name: " + parts[0]);
                     lstPassword.Items.Add(DecryptAesCipherPassword(dataManager.LoadEncryptedPasswordString(file.Name)[0], GetStringSha256Hash(txtLogin.Text)));
                     lstPassword.Items.Add("");
+                }
+                else
+                {
+                    x++;
+                }
+            }
+            if (x != 0)
+            {
+                lstPassword.Items.Add("NOT DECRYPTED:");
+                lstPassword.Items.Add("");
+                foreach (var file in d.GetFiles("*.gppass"))
+                {
+                    if (dataManager.LoadEncryptedPasswordString(file.Name)[1] != GetStringSha256Hash(txtLogin.Text))
+                    {
+                        lstPassword.Items.Add(file.Name);
+                    }
                 }
             }
         }
@@ -423,12 +452,6 @@ namespace Password_Manager
                         "or item selected is no file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }*/
         }
-
-        private void cmbTest_Click(object sender, EventArgs e)
-        {
-            lblTestEnc.Text = AES_Manager.Encrypt("123456", "hallo");
-        }
-
         public byte[] ComputeIV(string password)
         {
             using (SymmetricAlgorithm crypt = Aes.Create())
@@ -439,11 +462,6 @@ namespace Password_Manager
 
                 return crypt.IV;
             }
-        }
-
-        private void cmbTestDec_Click(object sender, EventArgs e)
-        {
-            lblDec.Text = AES_Manager.Decrypt(lblTestEnc.Text, "hallo");
         }
     }
 }

@@ -47,10 +47,6 @@
             this.chkPIN = new System.Windows.Forms.CheckBox();
             this.cmbLock = new System.Windows.Forms.Button();
             this.cmdDelete = new System.Windows.Forms.Button();
-            this.cmbTest = new System.Windows.Forms.Button();
-            this.lblTestEnc = new System.Windows.Forms.Label();
-            this.cmbTestDec = new System.Windows.Forms.Button();
-            this.lblDec = new System.Windows.Forms.Label();
             this.cobEncryption = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudPIN)).BeginInit();
@@ -242,44 +238,6 @@
             this.cmdDelete.UseVisualStyleBackColor = true;
             this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
             // 
-            // cmbTest
-            // 
-            this.cmbTest.Location = new System.Drawing.Point(1166, 137);
-            this.cmbTest.Name = "cmbTest";
-            this.cmbTest.Size = new System.Drawing.Size(75, 23);
-            this.cmbTest.TabIndex = 20;
-            this.cmbTest.Text = "test enc";
-            this.cmbTest.UseVisualStyleBackColor = true;
-            this.cmbTest.Click += new System.EventHandler(this.cmbTest_Click);
-            // 
-            // lblTestEnc
-            // 
-            this.lblTestEnc.AutoSize = true;
-            this.lblTestEnc.Location = new System.Drawing.Point(1163, 172);
-            this.lblTestEnc.Name = "lblTestEnc";
-            this.lblTestEnc.Size = new System.Drawing.Size(44, 16);
-            this.lblTestEnc.TabIndex = 21;
-            this.lblTestEnc.Text = "label5";
-            // 
-            // cmbTestDec
-            // 
-            this.cmbTestDec.Location = new System.Drawing.Point(1166, 196);
-            this.cmbTestDec.Name = "cmbTestDec";
-            this.cmbTestDec.Size = new System.Drawing.Size(75, 23);
-            this.cmbTestDec.TabIndex = 22;
-            this.cmbTestDec.Text = "test dec";
-            this.cmbTestDec.UseVisualStyleBackColor = true;
-            this.cmbTestDec.Click += new System.EventHandler(this.cmbTestDec_Click);
-            // 
-            // lblDec
-            // 
-            this.lblDec.AutoSize = true;
-            this.lblDec.Location = new System.Drawing.Point(1163, 222);
-            this.lblDec.Name = "lblDec";
-            this.lblDec.Size = new System.Drawing.Size(44, 16);
-            this.lblDec.TabIndex = 23;
-            this.lblDec.Text = "label5";
-            // 
             // cobEncryption
             // 
             this.cobEncryption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -298,9 +256,8 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(141, 124);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 16);
+            this.label5.Size = new System.Drawing.Size(0, 16);
             this.label5.TabIndex = 25;
-            this.label5.Text = "Choose algorithm";
             this.label5.Visible = false;
             // 
             // Form1
@@ -310,10 +267,6 @@
             this.ClientSize = new System.Drawing.Size(1345, 636);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cobEncryption);
-            this.Controls.Add(this.lblDec);
-            this.Controls.Add(this.cmbTestDec);
-            this.Controls.Add(this.lblTestEnc);
-            this.Controls.Add(this.cmbTest);
             this.Controls.Add(this.cmdDelete);
             this.Controls.Add(this.cmbLock);
             this.Controls.Add(this.chkPIN);
@@ -334,7 +287,7 @@
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.cmbLogin);
             this.Name = "Form1";
-            this.Text = "greenonionPass";
+            this.Text = "greenonionPass - PASSWORD MANAGER";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPIN)).EndInit();
             this.ResumeLayout(false);
@@ -363,10 +316,6 @@
         private System.Windows.Forms.CheckBox chkPIN;
         private System.Windows.Forms.Button cmbLock;
         private System.Windows.Forms.Button cmdDelete;
-        private System.Windows.Forms.Button cmbTest;
-        private System.Windows.Forms.Label lblTestEnc;
-        private System.Windows.Forms.Button cmbTestDec;
-        private System.Windows.Forms.Label lblDec;
         private System.Windows.Forms.ComboBox cobEncryption;
         private System.Windows.Forms.Label label5;
     }
