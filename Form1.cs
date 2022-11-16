@@ -194,7 +194,7 @@ namespace Password_Manager
             else if(cobEncryption.Text == "Use AES encryption")
             {
                 SaveLogfile("Using AES");
-                string aescrypt = AES_Manager.Encrypt(txtPass.Text, GetStringSha256Hash(txtLogin.Text));
+                string aescrypt = AES_Manager.Encrypt(txtPass.Text, GetStringSha256Hash(txtLogin.Text + nudPIN.Value));
                 if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                     "/ThePasswordManager/" + txtPasswordName.Text + ".gppass"))
                 {
@@ -202,7 +202,7 @@ namespace Password_Manager
                         "in the text box named ", "Overwrite password",
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 }
-                dataManager.SavePasswordString(txtPasswordName.Text, aescrypt, GetStringSha256Hash(txtLogin.Text));
+                dataManager.SavePasswordString(txtPasswordName.Text, aescrypt, GetStringSha256Hash(txtLogin.Text + nudPIN.Value));
                 SaveLogfile("Saved encrypted password (" + txtPasswordName.Text + ")");
             }
         }
@@ -307,7 +307,7 @@ namespace Password_Manager
 
             foreach (var file in d.GetFiles("*.gppass")) //Dateien die das Passwort matchen zählen
             {
-                if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text))
+                if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text + nudPIN.Value))
                 {
                     abc++;
                 }
@@ -323,7 +323,7 @@ namespace Password_Manager
             foreach (var file in d.GetFiles("*.gppass")) //AES Passwörter entschlüsseln
             {
                 string[] parts = file.Name.Split(new char[] { '.' });
-                if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text))
+                if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text + nudPIN.Value))
                 {
                     lstPassword.Items.Add("Password name: " + parts[0]);
                     lstPassword.Items.Add(DecryptAesCipherPassword(dataManager.LoadEncryptedPasswordString(file.Name)[0], GetStringSha256Hash(txtLogin.Text)));
@@ -340,7 +340,7 @@ namespace Password_Manager
                 lstPassword.Items.Add("");
                 foreach (var file in d.GetFiles("*.gppass"))
                 {
-                    if (dataManager.LoadEncryptedPasswordString(file.Name)[1] != GetStringSha256Hash(txtLogin.Text))
+                    if (dataManager.LoadEncryptedPasswordString(file.Name)[1] != GetStringSha256Hash(txtLogin.Text + nudPIN.Value))
                     {
                         lstPassword.Items.Add(file.Name);
 
