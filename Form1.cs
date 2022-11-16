@@ -11,6 +11,8 @@ using System.IO;
 using MiniJSON;
 using System.Security.Cryptography;
 using System.Runtime.CompilerServices;
+using static dataManager;
+using System.Diagnostics;
 
 namespace Password_Manager
 {
@@ -34,9 +36,10 @@ namespace Password_Manager
         {
             InitializeComponent();
         }
-
+        
         private void cmbLogin_Click(object sender, EventArgs e)
         {
+            SaveLogfile("Attempting Login");
             if(txtLogin.Text != "")
             {
                 cobEncryption.Visible = true;
@@ -57,7 +60,11 @@ namespace Password_Manager
                 cmbPassVisibility.Visible = true;
                 label1.Visible = true;
                 label2.Visible = true;
-                
+                SaveLogfile("Login Succesful");
+            }
+            else
+            {
+                SaveLogfile("Login failed");
             }
 
 
@@ -68,6 +75,7 @@ namespace Password_Manager
 
         public int ConvertToASCIIint(string s)
         {
+            SaveLogfile("Calling method 'ConvertToASCIIint'");
             int localpassint = 0;
             pass = "";
 
@@ -82,6 +90,7 @@ namespace Password_Manager
 
         public int ConvertToASCIIaddition(string s)
         {
+            SaveLogfile("Calling method 'ConvertToASCIIaddition'");
             //pass = "";
             int localpassint = 0;
 
@@ -93,15 +102,17 @@ namespace Password_Manager
             return localpassint;
         }
 
-        public Random SetRandomObject(int seed)
+        public Random SetRandomObject(int seed) // Initialisiert eine Zufallszahl mit dem Seed
         {
+            //SaveLogfile("Calling method 'SetRandomObject'");  //Das müllt das Logfile zu!
             Random randomobject = new Random(seed);
 
             return randomobject;
         }
 
-        public int GetRandomNumber(Random randobj, int number)
+        public int GetRandomNumber(Random randobj, int number) //Holt die number-nte Zufallszahl mit dem Seed des randobj. Sollte mit SetRandomObject benutzt werden
         {
+            //SaveLogfile("Calling method 'GetRandomNumber'"); //Das müllt das Logfile zu!
             lblRandom.Text = "";
             for(int j = 1; j < number; j++)
             {
@@ -115,6 +126,7 @@ namespace Password_Manager
 
         public int[] encrypt(string plain)
         {
+            SaveLogfile("Try encrypting plaintext (ASCII-SHUFFLER)");
             int x = 0;
             
             foreach (char c in plain)
@@ -142,23 +154,27 @@ namespace Password_Manager
                 j++;
             }
 
-                /*if (i == 0)
+            /*if (i == 0)
+            {
+                for (int j = 0; j < encrypted.Length; j++)
                 {
-                    for (int j = 0; j < encrypted.Length; j++)
-                    {
-                        encrypted[j] = 0;
-                    }
-                }*/
+                    encrypted[j] = 0;
+                }
+            }*/
             //}
+
+            SaveLogfile("Encryption succesfully (ASCII-SHUFFLER)");
 
             return encrypted;
         }
 
         private void cmbEncrypt_Click(object sender, EventArgs e)
         {
+            SaveLogfile("Starting encryption");
             lblCrypt.Text = "";
             if(cobEncryption.Text == "Use ASCII-Shuffler encryption")
             {
+                SaveLogfile("Using ASCII-SHUFLLER");
                 int[] showcrypto;
                 showcrypto = encrypt(txtPass.Text);
                 foreach (int i in showcrypto)
@@ -173,9 +189,11 @@ namespace Password_Manager
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 }
                 dataManager.SavePasswordArray(txtPasswordName.Text, encrypt(txtPass.Text));
+                SaveLogfile("Saved encrypted password (" + txtPasswordName.Text + ")");
             }
             else if(cobEncryption.Text == "Use AES encryption")
             {
+                SaveLogfile("Using AES");
                 string aescrypt = AES_Manager.Encrypt(txtPass.Text, GetStringSha256Hash(txtLogin.Text));
                 if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                     "/ThePasswordManager/" + txtPasswordName.Text + ".gppass"))
@@ -185,42 +203,40 @@ namespace Password_Manager
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 }
                 dataManager.SavePasswordString(txtPasswordName.Text, aescrypt, GetStringSha256Hash(txtLogin.Text));
+                SaveLogfile("Saved encrypted password (" + txtPasswordName.Text + ")");
             }
         }
 
         private void cmbClose_Click(object sender, EventArgs e)
         {
+            SaveLogfile("Closing greenonionPass");
             Close();
         }
-
-        //public void savePasswords()
-        //{
-        //    /*dict.Clear();
-        //    StreamReader sr = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
-        //    var jsonString = sr.ReadLine();
-        //    sr.Close();*/
-
-        //    //dict = Json.Deserialize(jsonString) as Dictionary<int, object>;
-
-        //    int[] savecrypto = new int[encrypt(txtPass.Text).Length];
-        //    savecrypto = encrypt(txtPass.Text);
-        //    int x = 0;
-        //    foreach(int i in savecrypto)
-        //    {
-        //        dict.Add(x, i);
-        //        x++;
-        //    }
-
-        //    var str = Json.Serialize(dict);
-        //    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
-        //    StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/" + "passwords.txt");
-        //    sw.WriteLine(str);
-        //    sw.Flush();
-        //    sw.Close();
-        //}
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            SaveLogfile("Starting greenonionPass");
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\AES\\")) //Nötige Ordner erstellen, falls nicht vorhanden
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\AES\\");
+            }
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\ASCII_Shuffler\\"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\ASCII_Shuffler\\");
+            }
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\Log\\"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\Log\\");
+            }
+            
+            if(!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\Log\\greenonionPass.log")) //Logfile erstellen, falls nicht vorhanden
+            {
+                
+                var logfile = File.Create(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\Log\\greenonionPass.log");
+                logfile.Close();
+            }
+
+            label6.Text = "View log at " + Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ThePasswordManager\\Logs\\greenonionPass.log";
             passwordchar = txtPass.PasswordChar;
             cobEncryption.Text = "Use ASCII-Shuffler encryption";
         }
@@ -229,6 +245,7 @@ namespace Password_Manager
         {
             if (!isPasswordVisible)
             {
+                SaveLogfile("Enabled password visibility");
                 txtPass.Font = new Font("Microsoft Sans Serif", 10f);
                 txtPass.PasswordChar = (char)0;
                 isPasswordVisible = true;
@@ -237,6 +254,7 @@ namespace Password_Manager
             }
             else
             {
+                SaveLogfile("Disabled password visibility");
                 txtPass.Font = new Font("Microsoft Sans Serif", 4f);
                 txtPass.PasswordChar = passwordchar;
                 isPasswordVisible = false;
@@ -246,13 +264,23 @@ namespace Password_Manager
 
         public void loadAllPasswords()
         {
+            SaveLogfile("Attempting load all passwords");
             //Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/");
             string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/ASCII_Shuffler/";
             DirectoryInfo d = new DirectoryInfo(filepath);
-            lstPassword.Items.Add("ASCII-SHUFFLER ENCRYPTED PASSWORDS:");
-            lstPassword.Items.Add("");
+            
+            int l = 0;
+            foreach(var file in d.GetFiles("*.gppass"))
+            {
+                l++;
+            }
+            if(l != 0)
+            {
+                lstPassword.Items.Add("ASCII-SHUFFLER ENCRYPTED PASSWORDS:");
+                lstPassword.Items.Add("");
+            }
 
-            foreach (var file in d.GetFiles("*.gppass"))
+            foreach (var file in d.GetFiles("*.gppass")) // ASCII-Shuffler Passwörter entschlüsseln
             {
                 string[] parts = file.Name.Split(new char[] { '.' });
                 lblA.Text = file.Name;
@@ -277,7 +305,7 @@ namespace Password_Manager
             d = new DirectoryInfo(filepath);
             int abc = 0;
 
-            foreach (var file in d.GetFiles("*.gppass"))
+            foreach (var file in d.GetFiles("*.gppass")) //Dateien die das Passwort matchen zählen
             {
                 if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text))
                 {
@@ -292,7 +320,7 @@ namespace Password_Manager
 
             int x = 0;
 
-            foreach (var file in d.GetFiles("*.gppass"))
+            foreach (var file in d.GetFiles("*.gppass")) //AES Passwörter entschlüsseln
             {
                 string[] parts = file.Name.Split(new char[] { '.' });
                 if (dataManager.LoadEncryptedPasswordString(file.Name)[1] == GetStringSha256Hash(txtLogin.Text))
@@ -315,9 +343,12 @@ namespace Password_Manager
                     if (dataManager.LoadEncryptedPasswordString(file.Name)[1] != GetStringSha256Hash(txtLogin.Text))
                     {
                         lstPassword.Items.Add(file.Name);
+
                     }
                 }
             }
+
+            SaveLogfile("Successfully loaded all passwords");
         }
 
         public char[] DecryptEncryptedPasswordArray(int[] passwordarray)

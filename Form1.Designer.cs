@@ -49,6 +49,8 @@
             this.cmdDelete = new System.Windows.Forms.Button();
             this.cobEncryption = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudPIN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -260,11 +262,31 @@
             this.label5.TabIndex = 25;
             this.label5.Visible = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 608);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 16);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "View log at";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(542, 391);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(285, 16);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "PIN has no effect to AES-Encrypted passwords";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1345, 636);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cobEncryption);
             this.Controls.Add(this.cmdDelete);
@@ -318,6 +340,8 @@
         private System.Windows.Forms.Button cmdDelete;
         private System.Windows.Forms.ComboBox cobEncryption;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
 

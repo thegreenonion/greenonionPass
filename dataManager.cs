@@ -10,9 +10,11 @@ using System.Windows.Forms;
 using System.IO;
 using MiniJSON;
 using System.Collections;
+using System.Drawing.Text;
 
 public partial class dataManager
 {
+    
 
     public static Dictionary<string, object> dict = new Dictionary<string, object>();
     // Start is called before the first frame update
@@ -88,6 +90,17 @@ public partial class dataManager
         //DirectoryInfo dirInfo = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
         //dirInfo.Attributes &= ~FileAttributes.ReadOnly;
         StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/AES/" + passwordName + ".gppass");
+        sw.WriteLine(str);
+        sw.Flush();
+        sw.Close();
+    }
+
+    public static void SaveLogfile(string logmsg)
+    {
+        Dictionary<string, object> log = new Dictionary<string, object>();
+        log.Add("[" + DateTime.Now + " - At greenonionPass] ", logmsg);
+        var str = Json.Serialize(log);
+        StreamWriter sw = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ThePasswordManager/Log/greenonionPass.log", true);
         sw.WriteLine(str);
         sw.Flush();
         sw.Close();
