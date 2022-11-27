@@ -6,13 +6,11 @@ Official release at 05.09.2022
 Note: This project may contain bugs. Feel free to report them at https://www.github.com/thegreenonion/greenonionPass/issues/new
 
 # Installation
-1. Click on the release you want to download
+1. Click on the release you want to download.
 
-2. Download "Release v. x.x.x.x.zip"
+2. Download "GP_install_v.x.x.x.x.exe".
 
-3. Extract ALL files on your PC
-
-4. Double-click setup.exe to automaticly install greenonionPass
+4. Double-click "GP_install_v.x.x.x.x.exe" to automaticly install greenonionPass.
 
 5. Make sure you have have disabled controlled folder access in the windows-safety app or granted greenonionPass privileges to access controlled folders.
 
