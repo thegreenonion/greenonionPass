@@ -1,6 +1,5 @@
 # greenonionPass
 
-This is my Password Manager written in C#.
 Official release at 05.09.2022
 
 Note: This project may contain bugs. Feel free to report them at https://www.github.com/thegreenonion/greenonionPass/issues/new
