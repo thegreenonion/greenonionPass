@@ -34,5 +34,7 @@ It is highly recommended to use passwords that contain:
 - At least 1 number
 - At least 1 special letter
 - At least 16, better 25 or more characters
+- A random generated string of characters (DON'T use a word that is common in your language and may be listed in a dictionary!)
 
 Please use your passwords only once.
+
