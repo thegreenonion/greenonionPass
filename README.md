@@ -24,3 +24,16 @@ WARNING: It is highly recommended for your safety to download always the newest 
 4. When you restart the Password manager and log in with the same master password you used to encrypt your previos saved passwords, they'll automaticly load when logging in.
 
 Note: Feel free to change your master password while usage, greenonionPass will always try to decrypt all passwords with your entered master password. When you have passwords encrypted with other master passwords, in the list box there are only unicode-symbols f. E. ![grafik](https://user-images.githubusercontent.com/103243402/188204735-610c3220-726a-419f-8db6-e8ce77a5ca61.png)
+
+# IMPORTANT
+## Password policy
+
+It is highly recommended to use passwords that contain:
+
+- At least 1 upper case letter
+- At least 1 lower case letter
+- At least 1 number
+- At least 1 special letter
+- At least 16, better 25 or more characters
+
+Please use your passwords only once.
